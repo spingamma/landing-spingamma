@@ -302,6 +302,19 @@
         const GLOBAL_CONFIG = {
             
             // ==========================================
+            // 🏷️ IDENTIDAD Y MARCA (Centralizado)
+            // ==========================================
+            identidad: {
+                empresaPart1: "Spin",
+                empresaPart2: "Gamma",
+                nombreEmpresa: "SpinGamma",
+                nombreRed: "Tarjetoso",
+                urlRed: "https://tarjetoso.com",
+                whatsapp: "59164016676",
+                mensajeWA: "Hola, vengo de la web. Me interesa asesoría general."
+            },
+
+            // ==========================================
             // TIPOGRAFÍA Y TAMAÑOS
             // ==========================================
             tipografia: {
@@ -347,10 +360,8 @@
             // TEXTOS Y PLANES (TASA DE CAMBIO 1 USD = 9.50 Bs)
             // ==========================================
             textosUI: {
-                logoParte1: "Spin",
-                logoParte2: "Gamma",
                 navItem1: "Inicio",
-                navItem2: "SpinJob",
+                navItem2: "Tarjetoso", // Antes SpinJob
                 navItem3: "Tarjetas",
                 navItem4: "Landing",
                 navItem5: "Chatbots",
@@ -361,8 +372,8 @@
                 descInicio: "Acompañamos la evolución de tu negocio con infraestructura web y automatización escalable.",
                 botonHero: "Descubre el Camino",
     
-                titSpinjob: "La Red SpinJob",
-                descSpinjob: "Únete a nuestra red laboral y convierte tus perfiles en verdaderos activos de venta. Encuentra oportunidades y clientes en un solo lugar.",
+                titRed: "La Red Tarjetoso", // Antes SpinJob
+                descRed: "Únete a nuestra red laboral y convierte tus perfiles en verdaderos activos de venta. Encuentra oportunidades y clientes en un solo lugar.",
                 
                 titTarjetas: "Tarjetas de Presentación 2.0",
                 descTarjetas: "El fin de las tarjetas de papel. Obtén tu tarjeta QR digital, comparte tus redes sociales, ubicación y catálogos en un solo toque directo al teléfono de tu cliente.",
@@ -375,7 +386,7 @@
                         freq: "/año", 
                         desc: "Tu primera gran impresión", 
                         features: [
-                            "Perfil en red laboral SpinJob", 
+                            "Perfil en red laboral Tarjetoso", 
                             "Botones directos a tu WhatsApp y GPS", 
                             "Código QR descargable (¡Listo para imprimir!)",
                             "1 Actualización de datos anual incluida"
@@ -387,7 +398,7 @@
                         freq: "/año", 
                         desc: "Imagen de alto nivel y prestigio", 
                         features: [
-                            "Perfil en red laboral SpinJob",
+                            "Perfil en red laboral Tarjetoso",
                             "Diseño Corporativo Unificado Premium", 
                             "Catálogo de redes: TikTok, FB, IG, LinkedIn", 
                             "1 Actualización trimestral incluida",
@@ -473,17 +484,10 @@
                 descEquipo: "Acompañamiento técnico de alto nivel en cada fase."
             },
             
-            contacto: {
-                whatsapp: "59164016676",
-                mensajeGeneral: "Hola, vengo de la web. Me interesa asesoría general."
-            },
-            enlaces: {
-                urlSpinJob: "https://spinjob.spingamma.com/"
-            },
             imagenes: {
                 fotoJhonatan: "jhona.jpg",
                 fotoWendy: "wendy.jpeg",
-                imgSpinjob: "SpinJob.png",       
+                imgRed: "SpinJob.png",       
                 imgTarjetas: "TarjetasDigitalesImage.png", 
                 imgLanding: "landing-page-demo.png", 
                 imgVidPlaceholder: "PreviewChatbot.png" 
@@ -532,7 +536,7 @@
             let html = '';
             planesArray.forEach(plan => {
                 const msj = `Hola, me interesa el Plan ${plan.nombre} de ${productoContexto}. ¿Me dan más información?`;
-                const linkWa = `https://wa.me/${GLOBAL_CONFIG.contacto.whatsapp}?text=${encodeURIComponent(msj)}`;
+                const linkWa = `https://wa.me/${GLOBAL_CONFIG.identidad.whatsapp}?text=${encodeURIComponent(msj)}`;
                 
                 let featuresHTML = '';
                 if(plan.features && plan.features.length > 0) {
@@ -615,8 +619,8 @@
             });
             
             // INYECTAR TEXTOS
-            setHTML('logo-spin', GLOBAL_CONFIG.textosUI.logoParte1);
-            setHTML('logo-gamma', GLOBAL_CONFIG.textosUI.logoParte2);
+            setHTML('logo-spin', GLOBAL_CONFIG.identidad.empresaPart1);
+            setHTML('logo-gamma', GLOBAL_CONFIG.identidad.empresaPart2);
             
             setHTML('ui-nav-1', GLOBAL_CONFIG.textosUI.navItem1);
             setHTML('ui-nav-2', GLOBAL_CONFIG.textosUI.navItem2);
@@ -630,13 +634,13 @@
             setHTML('ui-desc-inicio', GLOBAL_CONFIG.textosUI.descInicio);
             setHTML('ui-texto-btn-hero', GLOBAL_CONFIG.textosUI.botonHero);
             
-            setHTML('ui-tit-spinjob', GLOBAL_CONFIG.textosUI.titSpinjob);
-            setHTML('ui-desc-spinjob', GLOBAL_CONFIG.textosUI.descSpinjob);
+            setHTML('ui-tit-spinjob', GLOBAL_CONFIG.textosUI.titRed);
+            setHTML('ui-desc-spinjob', GLOBAL_CONFIG.textosUI.descRed);
             
             setHTML('ui-tit-tarjetas', GLOBAL_CONFIG.textosUI.titTarjetas);
             setHTML('ui-desc-tarjetas', GLOBAL_CONFIG.textosUI.descTarjetas);
             setHTML('ui-cta-info-tarjetas', GLOBAL_CONFIG.textosUI.ctaInfoTarjetas);
-            setHTML('content-tarjetas-planes', generarPlanesHTML(GLOBAL_CONFIG.textosUI.planesTarjetas, "Tarjetas Digitales"));
+            setHTML('content-tarjetas-planes', generarPlanesHTML(GLOBAL_CONFIG.textosUI.planesTarjetas, GLOBAL_CONFIG.identidad.nombreRed));
 
             setHTML('ui-tit-landing', GLOBAL_CONFIG.textosUI.titLanding);
             setHTML('ui-desc-landing', GLOBAL_CONFIG.textosUI.descLanding);
@@ -654,17 +658,17 @@
             // IMÁGENES
             setImg('img-jhonatan', GLOBAL_CONFIG.imagenes.fotoJhonatan);
             setImg('img-wendy', GLOBAL_CONFIG.imagenes.fotoWendy);
-            setImg('img-spinjob', GLOBAL_CONFIG.imagenes.imgSpinjob);
+            setImg('img-spinjob', GLOBAL_CONFIG.imagenes.imgRed);
             setImg('img-tarjetas', GLOBAL_CONFIG.imagenes.imgTarjetas);
             setImg('img-landing', GLOBAL_CONFIG.imagenes.imgLanding);
             setImg('img-chatbot-preview', GLOBAL_CONFIG.imagenes.imgVidPlaceholder); 
 
             // ENLACES
-            const btnSpinJob = document.getElementById('btn-spinjob');
-            if(btnSpinJob) btnSpinJob.href = GLOBAL_CONFIG.enlaces.urlSpinJob;
+            const btnRed = document.getElementById('btn-spinjob');
+            if(btnRed) btnRed.href = GLOBAL_CONFIG.identidad.urlRed;
 
             const waLinks = document.querySelectorAll('.js-wa-link');
-            const waUrlBase = `https://wa.me/${GLOBAL_CONFIG.contacto.whatsapp}?text=${encodeURIComponent(GLOBAL_CONFIG.contacto.mensajeGeneral)}`;
+            const waUrlBase = `https://wa.me/${GLOBAL_CONFIG.identidad.whatsapp}?text=${encodeURIComponent(GLOBAL_CONFIG.identidad.mensajeWA)}`;
             waLinks.forEach(link => { link.href = waUrlBase; });
         });
 
